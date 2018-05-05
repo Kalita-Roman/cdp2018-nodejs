@@ -1,3 +1,9 @@
 {
-    "name": "Node.js Homework Application"
+    "name": "Node.js Homework Application",
+    "paths": {
+        "data": "./data"
+    },
+    "watching": {
+        "delay": 3000
+    }
 }
