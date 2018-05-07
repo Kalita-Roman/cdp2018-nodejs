@@ -1,5 +1,8 @@
-# Homework task
-https://epa.ms/nodejs18-hw1
+# Homework tasks
+|     | link |
+|-----|------|
+|   1 |  https://epa.ms/nodejs18-hw1  |
+|   2 |  https://epa.ms/nodejs18-hw2  |
 
 
 # Useful links
