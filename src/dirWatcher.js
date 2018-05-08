@@ -1,5 +1,5 @@
-import { watch } from "chokidar";
-import emitter from "./services/pubsub";
+import { watch } from 'chokidar';
+import emitter from './services/pubsub';
 
 export default class DirWatcher {
     watch(path = './', delay = 1000) {
@@ -7,11 +7,21 @@ export default class DirWatcher {
             usePolling: true,
             interval: delay
         };
-        this.wather = watch(path, watcherOptions);
-        this.wather.on("change", changeHandler);
+        this.wather = watch(path, watcherOptions)
+            .on('add', addHandler)
+            .on('change', changeHandler)
+            .on('unlink', unlinkHandler);
     }
 }
 
+function addHandler(path) {
+    emitter.emit('dirwatcher:changed', path);
+}
+
 function changeHandler(path) {
-    emitter.emit("dirwatcher:changed", path);
+    emitter.emit('dirwatcher:changed', path);
+}
+
+function unlinkHandler(path) {
+    emitter.emit('dirwatcher:deleted', path);
 }

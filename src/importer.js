@@ -5,13 +5,13 @@ export default class Importer {
     import(path) {
         return readFile(path)
             .then(csvParseSync)
-            .then(data => ( console.log(data), data ));
+            .then(data => ( console.log('\n', path, '\n', data), data ));
     }
 
     importSync(path) {
         const fileData = readFileSync(path);
-        const result = csvParseSync(fileData);
-        console.log(result);
-        return result;
+        const data = csvParseSync(fileData);
+        console.log('\n', path, '\n', data);
+        return data;
     }
 }
