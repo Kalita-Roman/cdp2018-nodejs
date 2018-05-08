@@ -18,3 +18,4 @@ const importer = new Importer();
 
 //emitter.on('dirwatcher:changed', importer.importSync);
 emitter.on('dirwatcher:changed', importer.import);
+emitter.on('dirwatcher:deleted', (path) => console.log(`File "${path}" has been deleted.`));
