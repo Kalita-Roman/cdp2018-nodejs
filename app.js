@@ -1,5 +1,4 @@
 import config from './config/config.json';
-import emitter from "./src/services/pubsub";
 import { Product, User } from './models';
 import DirWatcher from './src/dirWatcher.js';
 import Importer from './src/importer.js';
@@ -11,11 +10,12 @@ const { delay } = watching;
 new User();
 new Product();
 
-const dirwatcher = new DirWatcher();
-dirwatcher.watch(dataPath, delay);
-
 const importer = new Importer();
 
-//emitter.on('dirwatcher:changed', importer.importSync);
-emitter.on('dirwatcher:changed', importer.import);
-emitter.on('dirwatcher:deleted', (path) => console.log(`File "${path}" has been deleted.`));
+const dirwatcher = new DirWatcher(importer.import, handleFileDeleting);
+//const dirwatcher = new DirWatcher(importer.importSync);
+dirwatcher.watch(dataPath, delay);
+
+function handleFileDeleting (path) {
+    console.log(`File "${path}" has been deleted.`);
+}
