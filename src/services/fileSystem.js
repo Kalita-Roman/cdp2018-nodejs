@@ -9,8 +9,8 @@ export function readFile(path) {
                 return reject(error);
             };
             return resolve(data);
-        })
-    })
+        });
+    });
 }
 
 export function readFileSync(path) {

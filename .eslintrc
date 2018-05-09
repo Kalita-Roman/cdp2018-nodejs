@@ -1,0 +1,19 @@
+{
+    "env": {
+        "es6": true
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        "semi": [2, "always"],
+        "quotes":  [2, "single"],
+        "indent": [2, 4]
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        }
+    }
+}
