@@ -1,24 +1,48 @@
 import commander from 'commander';
 import functions, { argTypes } from './functions';
+import getAction from './getActions';
+import { errorPrinter } from './errors';
+
+const printError = errorPrinter(commander.help.bind(commander));
 
 commander
-	.option('-a, --action <action>', 'Action')
-	.option('-f, --file <file>', 'File')
-	.option('-p, --path <path>', 'Path', (path, paths) => (paths.push(path), paths), []);
+    .option('-a, --action <action>', 'Action')
+    .option('-f, --file <file>', 'File')
+    .option('-p, --path <path>', 'Path', (path, paths) => (paths.push(path), paths), []);
 
 commander.parse(process.argv);
 
-const handler = functions[commander.action];
-function getArgs(handler) {
-	if (handler.argType === argTypes.str) {
-		const { args } = commander;
-		return args && args[0];
+if (!isOption('action')) {
+  	printError('The option --action is reduired!');
+} else {
+  	const handler = functions[commander.action];
+	if(handler) {
+  		perfomAction(handler);
 	}
-	if (handler.argType === argTypes.filePath) {
-		return commander.file;
-	}
-	if (handler.argType === argTypes.path) {
-		return commander.path;
-	}
+	printError('Action you set is absent!');
 }
-handler.func(getArgs(handler));
+
+function isOption(option) {
+	return commander.hasOwnProperty(option);
+}
+
+function perfomAction({ argType, func }) {
+	if (argType === argTypes.str) {
+		const { args } = commander;
+		if(args) {
+			func(args[0]);
+		}
+	}
+	if (argType === argTypes.filePath) {
+		if(isOption('file')) {
+			func(commander.file);
+		}
+		printError('You need define option --file');
+	}
+	if (argType === argTypes.path) {
+		if(isOption('file')) {
+			func(commander.path);
+		}
+		printError('You need define option --path');
+  	}
+}
