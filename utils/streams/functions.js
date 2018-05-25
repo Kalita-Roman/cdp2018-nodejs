@@ -39,13 +39,13 @@ export default {
     reverse: {
         argType: argTypes.str,
         func: () => {
-        const handler = str =>
+            const handler = str =>
             str
             .split('')
             .reverse()
             .join('');
-        const reverseChunk = new Transformer(handler);
-        process.stdin
+            const reverseChunk = new Transformer(handler);
+            process.stdin
             .pipe(transformChunkToString)
             .pipe(reverseChunk)
             .pipe(process.stdout);
@@ -55,9 +55,9 @@ export default {
     transform: {
         argType: argTypes.str,
         func: () => {
-        const handler = str => str.toUpperCase();
-        const upperCaseChunk = new Transformer(handler);
-        process.stdin
+            const handler = str => str.toUpperCase();
+            const upperCaseChunk = new Transformer(handler);
+            process.stdin
             .pipe(transformChunkToString)
             .pipe(upperCaseChunk)
             .pipe(process.stdout);
@@ -83,33 +83,33 @@ export default {
     convertToFile: {
         argType: argTypes.filePath,
         func: function convertToFile(filePath) {
-        const readFileSteam = fs.createReadStream(filePath);
-        const fileName = basename(filePath, '.csv');
-        createDirIfItAbsents(outputPath);
-        const writeFileSteam = fs.createWriteStream(
+            const readFileSteam = fs.createReadStream(filePath);
+            const fileName = basename(filePath, '.csv');
+            createDirIfItAbsents(outputPath);
+            const writeFileSteam = fs.createWriteStream(
             resolvePath(outputPath, `${fileName}.json`)
         );
-        const parseSteam = parse({ columns: true });
-        const arr = [];
-        const writeArrToFile = () => writeFileSteam.end(JSON.stringify(arr));
-        parseSteam.on('data', arr.push.bind(arr)).on('unpipe', writeArrToFile);
-        readFileSteam.pipe(parseSteam);
+            const parseSteam = parse({ columns: true });
+            const arr = [];
+            const writeArrToFile = () => writeFileSteam.end(JSON.stringify(arr));
+            parseSteam.on('data', arr.push.bind(arr)).on('unpipe', writeArrToFile);
+            readFileSteam.pipe(parseSteam);
         }
     },
 
     cssBundler: {
         argType: argTypes.path,
         func: function cssBundler(paths) {
-        const { defaultCSS } = config.paths;
-        paths.push(resolvePath(defaultCSS));
-        createDirIfItAbsents(outputPath);
-        const writer = fs.createWriteStream(
+            const { defaultCSS } = config.paths;
+            paths.push(resolvePath(defaultCSS));
+            createDirIfItAbsents(outputPath);
+            const writer = fs.createWriteStream(
             resolvePath(outputPath, 'bundle.css')
         );
-        paths.forEach(path => {
-            const reader = fs.createReadStream(path);
-            reader.pipe(writer);
-        });
+            paths.forEach(path => {
+                const reader = fs.createReadStream(path);
+                reader.pipe(writer);
+            });
         }
     }
 };

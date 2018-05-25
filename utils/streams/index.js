@@ -1,2 +1,2 @@
-require("babel-core/register");
-require("./streams.js");
+require('babel-core/register');
+require('./streams.js');
