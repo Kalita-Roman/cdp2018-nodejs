@@ -1,7 +1,9 @@
 {
     "name": "Node.js Homework Application",
     "paths": {
-        "data": "./data"
+        "data": "./data",
+        "defaultCSS": "./data/nodejs18-hw3-css.css",
+        "output": "./output"
     },
     "watching": {
         "delay": 3000
