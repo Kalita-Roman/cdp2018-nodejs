@@ -4,7 +4,9 @@
     "main": "index.js",
     "scripts": {
         "start": "nodemon index.js",
-        "eslint:fix": "eslint --fix */*.js"
+        "eslint:fix": "eslint --fix */*.js",
+        "babel": "babel-node",
+        "plain-text-server": "nodemon --exec babel-node ./http-servers/plain-text-server.js"
     },
     "repository": {
         "type": "git",
@@ -27,8 +29,11 @@
         "nodemon": "^1.17.3"
     },
     "dependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-plugin-module-resolver": "^3.1.1",
         "chokidar": "^2.0.3",
         "commander": "^2.15.1",
-        "csv-parse": "^2.2.0"
+        "csv-parse": "^2.2.0",
+        "module-resolver": "^1.0.0"
     }
 }
