@@ -5,7 +5,9 @@
             "module-resolver",
             {
                 "alias": {
-                    "config": "./config/config.json"
+                    "config": "./config/config.json",
+                    "data": "./data",
+                    "services": "./src/services"
                 }
             }
         ]
