@@ -8,8 +8,8 @@
         "babel": "babel-node",
         "plain-text-server": "nodemon --exec babel-node ./http-servers/plain-text-server.js",
         "html-server": "nodemon --exec babel-node ./http-servers/html-server.js",
+        "json-server": "nodemon --exec babel-node ./http-servers/json-server.js",
         "test": "jest --config=jest.config.js --watchAll"
-
     },
     "repository": {
         "type": "git",
