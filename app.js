@@ -1,7 +1,7 @@
-import config from "./config/config.json";
-import { Product, User } from "./models";
-import DirWatcher from "./src/dirWatcher.js";
-import Importer from "./src/importer.js";
+import config from './config/config.json';
+import { Product, User } from './models';
+import DirWatcher from './src/dirWatcher.js';
+import Importer from './src/importer.js';
 
 const { paths, watching } = config;
 const { data: dataPath } = paths;
@@ -17,5 +17,5 @@ const dirwatcher = new DirWatcher(importer.import, handleFileDeleting);
 dirwatcher.watch(dataPath, delay);
 
 function handleFileDeleting(path) {
-  console.log(`File "${path}" has been deleted.`);
+    console.log(`File "${path}" has been deleted.`);
 }
