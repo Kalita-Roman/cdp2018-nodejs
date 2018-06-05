@@ -1,5 +1,5 @@
 {
-    "presets": ["env"],
+    "presets": [ "env", "stage-0" ],
     "plugins": [
         [
             "module-resolver",
@@ -7,7 +7,12 @@
                 "alias": {
                     "config": "./config/config.json",
                     "data": "./data",
-                    "services": "./src/services"
+                    "services": "./src/services",
+                    "app": "./app",
+                    "middlewares": "./middlewares",
+                    "utils": "./utils",
+                    "controllers": "./controllers",
+                    "test": "./test"
                 }
             }
         ]
