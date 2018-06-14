@@ -1,21 +1,17 @@
-import config from "./config/config.json";
-import { Product, User } from "./models";
-import DirWatcher from "./src/dirWatcher.js";
-import Importer from "./src/importer.js";
+import express from 'express';
+import bodyParser from 'body-parser';
+import cookiesParser from './middlewares/cookiesParser';
+import queryParser from './middlewares/queryParser';
+import router from './routes';
 
-const { paths, watching } = config;
-const { data: dataPath } = paths;
-const { delay } = watching;
+const app = express();
 
-new User();
-new Product();
+app.use(cookiesParser);
+app.use(queryParser);
+app.use(bodyParser.json());
 
-const importer = new Importer();
+app.use(router);
 
-const dirwatcher = new DirWatcher(importer.import, handleFileDeleting);
-//const dirwatcher = new DirWatcher(importer.importSync);
-dirwatcher.watch(dataPath, delay);
+app.all('*', (req, res) => res.status(404).send('404<br>This is a fiasco, bratan!'));
 
-function handleFileDeleting(path) {
-  console.log(`File "${path}" has been deleted.`);
-}
+export default app;
