@@ -2,6 +2,12 @@ import request from 'utils/test/requestForTestedApp';
 
 const { get, post } = request;
 
+jest.mock('middlewares/routes/auth', () => {
+    return {
+        auth: jest.fn((req, res, next) => next()),
+    };
+});
+
 jest.mock('middlewares/routes/users', () => {
     return {
         getUsers: jest.fn((req, res, next) => next()),
@@ -17,6 +23,7 @@ jest.mock('middlewares/routes/products', () => {
     };
 });
 
+import { auth } from 'middlewares/routes/auth';
 import { getUsers } from 'middlewares/routes/users';
 import { 
     getProducts,
@@ -28,6 +35,13 @@ import {
 describe('Router', () => {
     it('Should return 404 for any wrong url', async () => {
         await get('/').expect(404);
+    });
+});
+
+describe('/auth POST', () => {
+    it('Should use an appropriate middleware', async () => {
+        await post('/auth');
+        expect(auth).toHaveBeenCalled();
     });
 });
 
