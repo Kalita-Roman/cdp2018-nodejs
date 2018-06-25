@@ -33,14 +33,14 @@ describe('Middlewares for products', () => {
     });
 
     it('Should', async () => {
-        const req = {};
+        const req = { params: { id: 1 }};
         const res = new Res();
         await getProductById(req, res);
         expectBody(res, mockProduct);
     });
 
     it('Should', async () => {
-        const req = {};
+        const req = { params: { id: 1 }};
         const res = new Res();
         await getReviewsById(req, res);
         expectBody(res, mockReviews);
