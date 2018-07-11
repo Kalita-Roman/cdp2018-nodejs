@@ -1,3 +1,3 @@
 export function getUser() {
-    //TODO: implement it
+    return Promise.resolve({ name: '1', email: '@'});
 }

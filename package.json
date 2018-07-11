@@ -43,12 +43,17 @@
         "body-parser": "^1.18.3",
         "chokidar": "^2.0.3",
         "commander": "^2.15.1",
+        "compose-middleware": "^5.0.0",
         "csv-parse": "^2.2.0",
         "express": "^4.16.3",
+        "express-session": "^1.15.6",
         "jest": "^23.0.1",
         "jsonwebtoken": "^8.3.0",
         "lodash": "^4.17.10",
         "module-resolver": "^1.0.0",
+        "passport": "^0.4.0",
+        "passport-facebook": "^2.1.1",
+        "passport-local": "^1.0.0",
         "supertest": "^3.1.0"
     }
 }
