@@ -38,41 +38,23 @@
         }
     </style>
     <script>
-        function auth(type) {
-            switch (type) {
-                case 'local':
-                    return fetch('/auth/local', {
-                        method: 'POST',
-                        headers: new Headers({
-                            'cookie': document.cookie,
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        }),
-                        credentials: 'include',
-                        body: JSON.stringify({ username: 'U', password: 'P' })
-                    });
-                case 'facebook':
-                    return fetch('/auth/facebook', {
-                        method: 'GET',
-                        headers: new Headers({
-                            'cookie': document.cookie,
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        }),
-                        mode: 'no-cors',
-                        credentials: 'include',
-                    });
-                default: return null;
-            }
+        const headers = new Headers({
+            'cookie': document.cookie,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        })
+        function authLocal() {
+            fetch('/auth/local', {
+                method: 'POST',
+                headers,
+                credentials: 'include',
+                body: JSON.stringify({ username: 'U', password: 'P' })
+            });
         }
         function get(url) {
             fetch(url, {
                 method: 'GET',
-                headers: new Headers({
-                    'cookie': document.cookie,
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }),
+                headers,
                 credentials: 'include',
             });
         }
@@ -81,13 +63,15 @@
 
 <body>
     <div class="section">
-        <button class="btn simplify-btn" onclick="auth('local')">local</button>
+        <button class="btn simplify-btn" onclick="authLocal()">local</button>
         <a class="btn link-to-btn" href="/auth/facebook">facebook</a>
+        <a class="btn link-to-btn" href="/auth/twitter">twitter</a>
+        <a class="btn link-to-btn" href="/auth/google">google</a>
     </div>
     <div class="section">
         <button class="btn simplify-btn" onclick="get('/auth/logout')">logout</button>
     </div>
-    <div class="section" >
+    <div class="section">
         <button class="btn simplify-btn" onclick="get('/api/users')">get</button>
     </div>
 </body>
