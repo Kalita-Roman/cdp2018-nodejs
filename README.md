@@ -6,6 +6,7 @@
 |   3 |  https://epa.ms/nodejs18-hw3  |
 |   4 |  https://epa.ms/nodejs18-hw4  |
 |   5 |  https://epa.ms/nodejs18-hw5  |
+|   6 |  https://epa.ms/nodejs18-hw6  |
 
 # Useful links
 The link to our EPAM FED Slack: https://epamfed.slack.com 
