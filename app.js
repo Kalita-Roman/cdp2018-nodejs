@@ -5,6 +5,7 @@ import cookiesParser from 'middlewares/cookiesParser';
 import queryParser from 'middlewares/queryParser';
 import passportMiddleware from 'middlewares/passportMiddleware';
 import router from './routes';
+import 'services/sequelizeService';
 
 const app = express();
 
