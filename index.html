@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CDP-2018</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .section {
+            margin: 5px;
+            padding: 5px;
+            background-color: gray;
+        }
+
+        .btn {
+            padding: 5px;
+            background-color: white;
+            font-size: inherit;
+            font-family: inherit;
+        }
+
+        .simplify-btn {
+            border: none;
+        }
+
+        .link-to-btn {
+            display: inline-block;
+        }
+    </style>
+    <script>
+        const headers = new Headers({
+            'cookie': document.cookie,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        })
+        function authLocal() {
+            fetch('/auth/local', {
+                method: 'POST',
+                headers,
+                credentials: 'include',
+                body: JSON.stringify({ username: 'U', password: 'P' })
+            });
+        }
+        function get(url) {
+            fetch(url, {
+                method: 'GET',
+                headers,
+                credentials: 'include',
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div class="section">
+        <button class="btn simplify-btn" onclick="authLocal()">local</button>
+        <a class="btn link-to-btn" href="/auth/facebook">facebook</a>
+        <a class="btn link-to-btn" href="/auth/twitter">twitter</a>
+        <a class="btn link-to-btn" href="/auth/google">google</a>
+    </div>
+    <div class="section">
+        <button class="btn simplify-btn" onclick="get('/auth/logout')">logout</button>
+    </div>
+    <div class="section">
+        <button class="btn simplify-btn" onclick="get('/api/users')">get</button>
+    </div>
+</body>
+
+</html>

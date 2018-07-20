@@ -1,6 +1,7 @@
 export default class Res {
     json = jest.fn(() => this);
     status = jest.fn(() => this);
+    cookie = jest.fn(() => this);
 };
 
 export const expectBody = (res, body, status = 200) => {

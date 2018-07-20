@@ -1,0 +1,4 @@
+export const auth = async (req, res) => {
+    const { user } = req;
+    res.status(200).json({ user });
+};
