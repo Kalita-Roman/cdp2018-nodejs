@@ -1,7 +1,5 @@
-import { readFilePromise } from 'utils/fsUtils';
 import Product from 'models/Product';
-
-const REVIEWS_FILE = './data/api/reviews.json';
+import Review from 'models/Review';
 
 export const fetchProducts = () => {
     return Product.findAll({ raw : true });
@@ -14,9 +12,11 @@ export const fetchProductById = idParam => {
     });
 };
 
-export const fetchReviewsById = async idParam => {
-    const reviews = await readFilePromise(REVIEWS_FILE);
-    return reviews.filter(({ productId }) => productId === idParam);
+export const fetchReviewsById = productId => {
+    return Review.findAll({
+        where: { productId },
+        raw : true 
+    });
 };
 
 export const addProduct = async newProduct => {
