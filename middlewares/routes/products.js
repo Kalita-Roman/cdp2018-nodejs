@@ -2,9 +2,12 @@ import {
     fetchProducts,
     fetchProductById,
     removeProductById,
-    fetchReviewsById,
     addProduct
 } from 'controllers/products';
+
+import {
+    fetchReviewsById,
+} from 'controllers/reviews';
 
 export const getProducts = async (req, res) => {
     const products = await fetchProducts();
