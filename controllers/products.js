@@ -4,9 +4,9 @@ export const fetchProducts = () => {
     return Product.findAll({ raw : true });
 };
 
-export const fetchProductById = idParam => {
+export const fetchProductById = id => {
     return Product.find({ 
-        where: { id: idParam }, 
+        where: { id }, 
         raw : true 
     });
 };

@@ -1,6 +1,15 @@
 import { Router } from 'express';
-import { getUsers } from 'middlewares/routes/users';
+import id from './id';
+import { getUsers, postUsers } from 'middlewares/routes/users';
 
-export default new Router()
-    .get('/', getUsers);
+const router = new Router();
+
+router
+    .route('/')
+    .get(getUsers)
+    .post(postUsers);
+
+router.use('/:id', id);
+
+export default router;
     
