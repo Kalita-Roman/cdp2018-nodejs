@@ -1,7 +1,5 @@
-import { readFilePromise } from 'utils/fsUtils';
-
-const USERS_FILE = './data/api/users.json';
+import User from 'models/User';
 
 export const fetchUsers = () => {
-    return readFilePromise(USERS_FILE);
+    return User.findAll({ raw : true });
 };
