@@ -12,6 +12,12 @@ export const fetchProductById = idParam => {
     });
 };
 
+export const removeProductById = id => {
+    return Product.destroy({
+        where: { id }
+    });
+};
+
 export const fetchReviewsById = productId => {
     return Review.findAll({
         where: { productId },
@@ -23,4 +29,3 @@ export const addProduct = async newProduct => {
     const { dataValues } = await Product.create(newProduct);
     return dataValues;
 };
-
