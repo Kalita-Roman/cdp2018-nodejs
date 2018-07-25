@@ -11,7 +11,8 @@ const options = {
     host,
     port,
     dialect: 'postgres',
-    dialectOptions: { ssl: true }
+    dialectOptions: { ssl: true },
+    logging: false,
 };
 
 const sequelize = new Sequelize(database, username, password, options);
