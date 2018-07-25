@@ -6,7 +6,6 @@ import queryParser from 'middlewares/queryParser';
 import allowCors from 'middlewares/allowCors';
 import passportMiddleware from 'middlewares/passportMiddleware';
 import router from './routes';
-import 'services/sequelizeService';
 
 const app = express();
 
