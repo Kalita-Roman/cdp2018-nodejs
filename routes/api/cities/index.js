@@ -1,14 +1,17 @@
 import { Router } from 'express';
-//import id from './id';
-import { getCities } from 'middlewares/routes/cities';
+import id from './id';
+import { 
+    getCities,
+    postCities
+} from 'middlewares/routes/cities';
 
 const router = new Router();
 
 router
     .route('/')
-    .get(getCities);
-//.post(postProducts);
+    .get(getCities)
+    .post(postCities);
 
-//router.use('/:id', id);
+router.use('/:id', id);
 
 export default router;
