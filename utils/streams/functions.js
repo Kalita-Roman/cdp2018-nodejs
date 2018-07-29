@@ -1,7 +1,6 @@
 import fs from 'fs';
 import Transformer, {
-  transformChunkToString,
-  Transformer2
+    transformChunkToString,
 } from './Transformer';
 import parse from 'csv-parse';
 import Importer from '../../src/importer.js';
@@ -14,21 +13,6 @@ process.stdin.setEncoding('utf8');
 const resolvePath = (...args) => resolve('..', ...args);
 const outputPath = config.paths.output;
 
-function chunksSeparatorByComma() {
-    let prevChunk = null;
-    return (chunk, cb) => {
-        if (!prevChunk && chunk) {
-            prevChunk = JSON.stringify(chunk);
-        }
-        if (prevChunk && chunk) {
-            cb(prevChunk + ',');
-        }
-        if (prevChunk && !chunk) {
-            cb(prevChunk);
-        }
-    };
-}
-
 export const argTypes = {
     str: 'str',
     filePath: 'filePath',
@@ -40,15 +24,15 @@ export default {
         argType: argTypes.str,
         func: () => {
             const handler = str =>
-            str
-            .split('')
-            .reverse()
-            .join('');
+                str
+                    .split('')
+                    .reverse()
+                    .join('');
             const reverseChunk = new Transformer(handler);
             process.stdin
-            .pipe(transformChunkToString)
-            .pipe(reverseChunk)
-            .pipe(process.stdout);
+                .pipe(transformChunkToString)
+                .pipe(reverseChunk)
+                .pipe(process.stdout);
         }
     },
 
@@ -58,9 +42,9 @@ export default {
             const handler = str => str.toUpperCase();
             const upperCaseChunk = new Transformer(handler);
             process.stdin
-            .pipe(transformChunkToString)
-            .pipe(upperCaseChunk)
-            .pipe(process.stdout);
+                .pipe(transformChunkToString)
+                .pipe(upperCaseChunk)
+                .pipe(process.stdout);
         }
     },
 
@@ -87,8 +71,8 @@ export default {
             const fileName = basename(filePath, '.csv');
             createDirIfItAbsents(outputPath);
             const writeFileSteam = fs.createWriteStream(
-            resolvePath(outputPath, `${fileName}.json`)
-        );
+                resolvePath(outputPath, `${fileName}.json`)
+            );
             const parseSteam = parse({ columns: true });
             const arr = [];
             const writeArrToFile = () => writeFileSteam.end(JSON.stringify(arr));
@@ -104,8 +88,8 @@ export default {
             paths.push(resolvePath(defaultCSS));
             createDirIfItAbsents(outputPath);
             const writer = fs.createWriteStream(
-            resolvePath(outputPath, 'bundle.css')
-        );
+                resolvePath(outputPath, 'bundle.css')
+            );
             paths.forEach(path => {
                 const reader = fs.createReadStream(path);
                 reader.pipe(writer);
