@@ -1,18 +1,26 @@
-import CityModel from 'models/mongo/City';
+import City from 'models/mongo/City';
 
-export const fetchCities = CityModel.find();
+export const fetchCities = () => {
+    console.log('fetchCities');
+    console.log(City.find());
+    return City.find();
+};
 
 export const addCity = async (city) => {
-    const newCity = new CityModel(city);
-    return await newCity.save();
+    try {
+        const newCity = new City(city);
+        return await newCity.save();
+    } catch(error) {
+        return error;
+    }
 };
 
 export const updateCityById = async (_id, city) => {
-    const { n } = await CityModel.update({ _id }, city);
+    const { n } = await City.update({ _id }, city);
     return n;
 };
 
 export const removeCityById = async (_id) => {
-    const { n } = await CityModel.deleteOne({ _id });
+    const { n } = await City.deleteOne({ _id });
     return n;
 };

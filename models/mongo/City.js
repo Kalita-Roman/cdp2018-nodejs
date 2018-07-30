@@ -1,19 +1,13 @@
-import mongoose from 'mongoose';
+import { createModel } from 'services/mongooseServise';
 
-import { mongoDBconnectionUrl } from 'config';
-
-const Schema = mongoose.Schema;
-const CitySchema = new Schema({
-    name: { type: String },
-    country: { type: String },
-    capital: { type: Boolean },
+const schema = {
+    name: { type: String, required: true },
+    country: { type: String, required: true },
+    capital: { type: Boolean, required: true },
     location: {
         lat: { type: Number },
-        long:  { type: Number },
+        long: { type: Number },
     },
-});
+};
 
-const connection = mongoose.createConnection(mongoDBconnectionUrl, { useNewUrlParser: true });
-const CityModel = connection.model('cities', CitySchema);
-
-export default CityModel;
+export default createModel('cities', schema);
