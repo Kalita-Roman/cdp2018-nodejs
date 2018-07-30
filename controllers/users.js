@@ -1,23 +1,28 @@
-import User from 'models/User';
+import User from 'models/mongo/User';
 
 export const fetchUsers = () => {
-    return User.findAll({ raw : true });
+    return User.find();
 };
 
-export const addUser = async newUser => {
-    const { dataValues } = await User.create(newUser);
-    return dataValues;
+export const fetchUserById = (_id) => {
+    return User.findOne({ _id });
 };
 
-export const fetchUserById = id => {
-    return User.find({ 
-        where: { id }, 
-        raw : true 
-    });
+export const addUser = async user => {
+    try {
+        const newUser = new User(user);
+        return await newUser.save();
+    } catch (error) {
+        return error;
+    }
 };
 
-export const removeUserById = (id) => {
-    return User.destroy({
-        where: { id }
-    });
+export const updateUserById = async (_id, user) => {
+    const { n } = await User.update({ _id }, user);
+    return n;
+};
+
+export const removeUserById = async (_id) => {
+    const { n } = await City.deleteOne({ _id });
+    return n;
 };
