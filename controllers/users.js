@@ -23,6 +23,6 @@ export const updateUserById = async (_id, user) => {
 };
 
 export const removeUserById = async (_id) => {
-    const { n } = await City.deleteOne({ _id });
+    const { n } = await User.deleteOne({ _id });
     return n;
 };
