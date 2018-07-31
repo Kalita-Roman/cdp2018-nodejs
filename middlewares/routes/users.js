@@ -1,7 +1,7 @@
 import { 
     fetchUsers, 
     fetchUserById,
-    updateCityById,
+    updateUserById,
     addUser,
     removeUserById
 } from 'controllers/users';
@@ -24,7 +24,7 @@ export const postUsers = async (req, res) => {
 
 export const putUserById = async (req, res) => {
     const { body, params: { id }} = req;
-    const user = await updateCityById(id, body);
+    const user = await updateUserById(id, body);
     res.status(200).json(user);
 };
 
