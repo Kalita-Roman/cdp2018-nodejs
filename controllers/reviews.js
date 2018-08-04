@@ -1,4 +1,4 @@
-import Review from 'models/mongo/Review';
+import Review from 'models/Review';
 
 export const fetchReviews = () => {
     return Review.find();

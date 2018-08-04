@@ -1,8 +1,6 @@
-import City from 'models/mongo/City';
+import City from 'models/City';
 
 export const fetchCities = () => {
-    console.log('fetchCities');
-    console.log(City.find());
     return City.find();
 };
 

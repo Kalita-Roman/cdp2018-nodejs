@@ -1,4 +1,4 @@
-import User from 'models/mongo/User';
+import User from 'models/User';
 
 export const fetchUsers = () => {
     return User.find();
