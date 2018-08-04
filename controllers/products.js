@@ -1,4 +1,4 @@
-import Product from 'models/mongo/Product';
+import Product from 'models/Product';
 
 export const fetchProducts = () => {
     return Product.find();
