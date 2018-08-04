@@ -1,9 +1,13 @@
 import {
     fetchProducts,
     fetchProductById,
-    fetchReviewsById,
+    removeProductById,
     addProduct
 } from 'controllers/products';
+
+import {
+    fetchReviewsById,
+} from 'controllers/reviews';
 
 export const getProducts = async (req, res) => {
     const products = await fetchProducts();
@@ -22,6 +26,12 @@ export const getProductById = async (req, res) => {
         return res.status(200).json(product);
     }
     res.sendStatus(404);
+};
+
+export const deleteProductById = async (req, res) => {
+    const { id } = req.params;
+    const deletedItemsCount = await removeProductById(id);
+    return res.status(200).json({ deletedItemsCount });
 };
 
 export const getReviewsById = async (req, res) => {

@@ -1,15 +1,14 @@
 import Sequelize from 'sequelize';
 import db from 'services/sequelizeService';
 
-const Product = db.define('product', {
+const Review = db.define('review', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    name: Sequelize.STRING,
+    productId: Sequelize.INTEGER,
+    content: Sequelize.TEXT,
 });
 
-Product.sync();
-
-export default Product;
+export default Review;

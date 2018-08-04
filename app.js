@@ -3,24 +3,14 @@ import bodyParser from 'body-parser';
 import session from 'express-session';
 import cookiesParser from 'middlewares/cookiesParser';
 import queryParser from 'middlewares/queryParser';
+import allowCors from 'middlewares/allowCors';
 import passportMiddleware from 'middlewares/passportMiddleware';
 import router from './routes';
+import 'services/sequelizeService';
 
 const app = express();
 
-app.use((req, res, next) => {
-    res.set({
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Methods': '*',
-    });
-    if ('OPTIONS' === req.method) {
-        res.send(200);
-    }
-    else {
-        next();
-    }
-});
+app.use(allowCors);
 app.use(cookiesParser);
 app.use(queryParser);
 app.use(session({ 

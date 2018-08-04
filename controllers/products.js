@@ -1,33 +1,23 @@
-import { readFilePromise, writeFilePromise } from 'utils/fsUtils';
-
-const PRODUCTS_FILE = './data/api/products.json';
-const REVIEWS_FILE = './data/api/reviews.json';
+import Product from 'models/Product';
 
 export const fetchProducts = () => {
-    return readFilePromise(PRODUCTS_FILE);
+    return Product.findAll({ raw : true });
 };
 
-export const fetchProductById = async idParam => {
-    const products = await readFilePromise(PRODUCTS_FILE);
-    return products.find(({ id }) => id === idParam);
+export const fetchProductById = id => {
+    return Product.find({ 
+        where: { id }, 
+        raw : true 
+    });
 };
 
-export const fetchReviewsById = async idParam => {
-    const reviews = await readFilePromise(REVIEWS_FILE);
-    return reviews.filter(({ productId }) => productId === idParam);
+export const removeProductById = id => {
+    return Product.destroy({
+        where: { id }
+    });
 };
 
 export const addProduct = async newProduct => {
-    const products = await readFilePromise(PRODUCTS_FILE);
-    const newProducts = pushProduct(products, newProduct);
-    await writeFilePromise(PRODUCTS_FILE, newProducts);
-    return newProduct;
+    const { dataValues } = await Product.create(newProduct);
+    return dataValues;
 };
-
-function pushProduct(target, product) {
-    if (!Array.isArray(target)) {
-        return [product];
-    } 
-    target.push(product);
-    return target;
-}

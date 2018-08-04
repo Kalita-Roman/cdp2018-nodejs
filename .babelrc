@@ -9,6 +9,7 @@
                     "config": "./config/config.json",
                     "data": "./data",
                     "services": "./src/services",
+                    "models": "./models",
                     "app": "./app",
                     "middlewares": "./middlewares",
                     "utils": "./utils",
