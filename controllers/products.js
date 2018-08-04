@@ -1,23 +1,28 @@
 import Product from 'models/Product';
 
 export const fetchProducts = () => {
-    return Product.findAll({ raw : true });
+    return Product.find();
 };
 
-export const fetchProductById = id => {
-    return Product.find({ 
-        where: { id }, 
-        raw : true 
-    });
+export const fetchProductById = (_id) => {
+    return Product.findOne({ _id });
 };
 
-export const removeProductById = id => {
-    return Product.destroy({
-        where: { id }
-    });
+export const addProduct = async (product) => {
+    try {
+        const newProduct = new Product(product);
+        return await newProduct.save();
+    } catch (error) {
+        return error;
+    }
 };
 
-export const addProduct = async newProduct => {
-    const { dataValues } = await Product.create(newProduct);
-    return dataValues;
+export const updateProductById = async (_id, product) => {
+    const { n } = await Product.update({ _id }, product);
+    return n;
+};
+
+export const removeProductById = async (_id) => {
+    const { n } = await Product.deleteOne({ _id });
+    return n;
 };
