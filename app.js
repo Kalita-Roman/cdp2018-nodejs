@@ -5,6 +5,8 @@ import cookiesParser from 'middlewares/cookiesParser';
 import queryParser from 'middlewares/queryParser';
 import allowCors from 'middlewares/allowCors';
 import passportMiddleware from 'middlewares/passportMiddleware';
+import swaggerDocMiddleware from 'middlewares/swaggerDocMiddleware';
+import swaggerApiMiddleware from 'middlewares/swaggerApiMiddleware';
 import router from './routes';
 
 const app = express();
@@ -22,6 +24,8 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 app.use(passportMiddleware);
+app.use('/help', swaggerDocMiddleware);
+app.use(swaggerApiMiddleware);
 app.use(router);
 
 app.all('*', (req, res) => res.status(404).send('404<br>This is a fiasco, bratan!'));
