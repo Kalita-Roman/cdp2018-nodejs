@@ -1,14 +1,13 @@
-import Sequelize from 'sequelize';
-import db from 'services/sequelizeService';
+import mongoose from 'mongoose';
 
-const Review = db.define('review', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    productId: Sequelize.INTEGER,
-    content: Sequelize.TEXT,
-});
+import { createModel } from 'services/mongooseServise';
 
-export default Review;
+const { ObjectId } = mongoose.Schema.Types;
+
+const schema = {
+    content: { type: String },
+    product: { type: ObjectId, required: true },
+    user: { type: ObjectId, required: true },
+};
+
+export default createModel('reviews', schema);

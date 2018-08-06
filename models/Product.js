@@ -1,15 +1,7 @@
-import Sequelize from 'sequelize';
-import db from 'services/sequelizeService';
+import { createModel } from 'services/mongooseServise';
 
-const Product = db.define('product', {
-    id: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    name: Sequelize.STRING,
-});
+const schema = {
+    name: { type: String, required: true },
+};
 
-Product.sync();
-
-export default Product;
+export default createModel('products', schema);

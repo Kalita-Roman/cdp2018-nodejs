@@ -52,6 +52,8 @@
         "jsonwebtoken": "^8.3.0",
         "lodash": "^4.17.10",
         "module-resolver": "^1.0.0",
+        "mongodb": "^3.1.1",
+        "mongoose": "^5.2.5",
         "passport": "^0.4.0",
         "passport-facebook": "^2.1.1",
         "passport-google-oauth": "^1.0.0",
@@ -59,6 +61,9 @@
         "passport-local": "^1.0.0",
         "passport-twitter": "^1.0.4",
         "pg": "^7.4.3",
-        "supertest": "^3.1.0"
+        "supertest": "^3.1.0",
+        "swagger-express-mw": "^0.7.0",
+        "swagger-ui-express": "^3.0.10",
+        "yamljs": "^0.3.0"
     }
 }

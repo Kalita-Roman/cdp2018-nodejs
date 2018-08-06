@@ -1,8 +1,9 @@
 import {
     fetchProducts,
     fetchProductById,
+    addProduct,
+    updateProductById,
     removeProductById,
-    addProduct
 } from 'controllers/products';
 
 import {
@@ -14,13 +15,8 @@ export const getProducts = async (req, res) => {
     res.status(200).json(products);
 };
 
-export const postProducts = async (req, res) => {
-    const product = await addProduct(req.body);
-    res.status(200).json(product);
-};
-
 export const getProductById = async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id || req.swagger.params.id.value;
     const product = await fetchProductById(id);
     if (product) {
         return res.status(200).json(product);
@@ -28,8 +24,20 @@ export const getProductById = async (req, res) => {
     res.sendStatus(404);
 };
 
+export const postProducts = async (req, res) => {
+    const product = await addProduct(req.body);
+    res.status(200).json(product);
+};
+
+export const putProductById = async (req, res) => {
+    const { body } = req;
+    const id = req.params.id || req.swagger.params.id.value;
+    const user = await updateProductById(id, body);
+    res.status(200).json(user);
+};
+
 export const deleteProductById = async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id || req.swagger.params.id.value;
     const deletedItemsCount = await removeProductById(id);
     return res.status(200).json({ deletedItemsCount });
 };

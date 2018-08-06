@@ -1,0 +1,1 @@
+export const swagger = './swagger/swagger.yaml';
