@@ -3,7 +3,7 @@ import { paths } from 'config';
 
 const config = {
     appRoot: __dirname,
-    swaggerFile: paths.swagger
+    swaggerFile: paths.swagger,
 };
 
 const waitSwaggerExpress = new Promise((resolve, reject) => {

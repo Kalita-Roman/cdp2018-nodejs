@@ -16,7 +16,7 @@ export const getProducts = async (req, res) => {
 };
 
 export const getProductById = async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id || req.swagger.params.id.value;
     const product = await fetchProductById(id);
     if (product) {
         return res.status(200).json(product);
@@ -30,13 +30,14 @@ export const postProducts = async (req, res) => {
 };
 
 export const putProductById = async (req, res) => {
-    const { body, params: { id }} = req;
+    const { body } = req;
+    const id = req.params.id || req.swagger.params.id.value;
     const user = await updateProductById(id, body);
     res.status(200).json(user);
 };
 
 export const deleteProductById = async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id || req.swagger.params.id.value;
     const deletedItemsCount = await removeProductById(id);
     return res.status(200).json({ deletedItemsCount });
 };

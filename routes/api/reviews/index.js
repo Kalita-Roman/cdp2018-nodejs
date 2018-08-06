@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import id from './id';
-import { getReviews, postReview } from 'middlewares/routes/reviews';
+import { getReviews, postReviews } from 'middlewares/routes/reviews';
 
 const router = new Router();
 
 router
     .route('/')
     .get(getReviews)
-    .post(postReview);
+    .post(postReviews);
 
 router.use('/:id', id);
 

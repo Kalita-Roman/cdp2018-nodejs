@@ -16,13 +16,14 @@ export const postCities = async (req, res) => {
 };
 
 export const putCityById = async (req, res) => {
-    const { body, params: { id }} = req;
+    const { body } = req;
+    const id = req.params.id || req.swagger.params.id.value;
     const city = await updateCityById(id, body);
     res.status(200).json(city);
 };
 
 export const deleteCityById = async (req, res) => {
-    const { id } = req.params;
+    const id = req.params.id || req.swagger.params.id.value;
     const deletedItemsCount = await removeCityById(id);
     return res.status(200).json({ deletedItemsCount });
 };

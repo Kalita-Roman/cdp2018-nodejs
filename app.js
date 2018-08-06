@@ -24,8 +24,8 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 app.use(passportMiddleware);
+app.use('/swagger', swaggerApiMiddleware);
 app.use('/help', swaggerDocMiddleware);
-app.use(swaggerApiMiddleware);
 app.use(router);
 
 app.all('*', (req, res) => res.status(404).send('404<br>This is a fiasco, bratan!'));

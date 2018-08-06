@@ -1,1 +1,1 @@
-export const swagger = './api/swagger/swagger.yaml';
+export const swagger = './swagger/swagger.yaml';

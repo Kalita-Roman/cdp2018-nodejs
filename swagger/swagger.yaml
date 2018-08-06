@@ -1,0 +1,321 @@
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: NodeJS CDP 2018
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: users
+    description: Operations to users
+  - name: products
+    description: Operations to products
+  - name: reviews
+    description: Operations to reviews
+  - name: cities
+    description: Operations to cities
+paths:
+  /users:
+    x-swagger-router-controller: users
+    get:
+      tags:
+        - users
+      description: Returns
+      operationId: getUsers
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+    post:
+      tags:
+        - users
+      description: Returns
+      operationId: postUsers
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/User'
+  '/users/{id}':
+    x-swagger-router-controller: users
+    get:
+      tags:
+        - users
+      description: Get an user by ID
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/User'
+    put:
+      tags:
+        - users
+      description: Update an user
+      operationId: putUserById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - users
+      description: Delete an user by ID
+      operationId: deleteUserById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+  /products:
+    x-swagger-router-controller: products
+    get:
+      tags:
+        - products
+      description: Returns
+      operationId: getProducts
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+    post:
+      tags:
+        - products
+      description: Returns
+      operationId: postProducts
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Product'
+  '/products/{id}':
+    x-swagger-router-controller: products
+    get:
+      tags:
+        - products
+      description: Get an user by ID
+      operationId: getProductById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/User'
+    put:
+      tags:
+        - products
+      description: Update an user
+      operationId: putProductById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - products
+      description: Delete an user by ID
+      operationId: deleteProductById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+  /reviews:
+    x-swagger-router-controller: reviews
+    get:
+      tags:
+        - reviews
+      description: Returns
+      operationId: getReviews
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Review'
+    post:
+      tags:
+        - reviews
+      description: Returns
+      operationId: postReviews
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Review'
+  '/reviews/{id}':
+    x-swagger-router-controller: products
+    get:
+      tags:
+        - reviews
+      description: Get an review by ID
+      operationId: getReviewById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/User'
+    put:
+      tags:
+        - reviews
+      description: Update an user
+      operationId: putReviewById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - reviews
+      description: Delete an user by ID
+      operationId: deleteReviewById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+  /cities:
+    x-swagger-router-controller: cities
+    get:
+      tags:
+        - cities
+      description: Returns
+      operationId: getCities
+      responses:
+        '200':
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/City'
+    post:
+      tags:
+        - cities
+      description: Returns
+      operationId: postCities
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/City'
+  '/cities/{id}':
+    x-swagger-router-controller: products
+    put:
+      tags:
+        - cities
+      description: Update an user
+      operationId: putCityById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+    delete:
+      tags:
+        - cities
+      description: Delete an user by ID
+      operationId: deleteCityById
+      parameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+  /swagger:
+    x-swagger-pipe: swagger_raw
+definitions:
+  User:
+    required:
+      - name
+    properties:
+      name:
+        type: string
+  Product:
+    required:
+      - name
+    properties:
+      name:
+        type: string
+  Review:
+    required:
+      - user
+      - product
+    properties:
+      user:
+        description: User ID
+        type: number
+      product:
+        type: string
+      content:
+        type: string
+  City:
+    required:
+      - name
+      - country
+      - capital
+    properties:
+      name:
+        type: string
+      country:
+        type: string
+      capital: 
+        type: string
+      location:
+        type: object
+        properties: 
+          lat:
+            type: number
+          long: 
+            type: number
+      
+  
